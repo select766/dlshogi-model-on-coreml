@@ -1,0 +1,6 @@
+## User settings
+xcuserdata/
+
+.DS_Store
+SampleIO.bin
+DlShogiResnet10Swish.mlmodel
