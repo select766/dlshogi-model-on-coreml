@@ -14,10 +14,10 @@
 		AAA42AD8278F13C0005386D8 /* DlshogiOnCoreMLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA42AD7278F13C0005386D8 /* DlshogiOnCoreMLTests.swift */; };
 		AAA42AE2278F13C1005386D8 /* DlshogiOnCoreMLUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA42AE1278F13C1005386D8 /* DlshogiOnCoreMLUITests.swift */; };
 		AAA42AE4278F13C1005386D8 /* DlshogiOnCoreMLUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA42AE3278F13C1005386D8 /* DlshogiOnCoreMLUITestsLaunchTests.swift */; };
-		AAA42AF1278F1470005386D8 /* DlShogiResnet10Swish.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = AAA42AF0278F1470005386D8 /* DlShogiResnet10Swish.mlmodel */; };
 		AAA42B2F279C0C1E005386D8 /* SampleIO.bin in Resources */ = {isa = PBXBuildFile; fileRef = AAA42B2E279C0C1E005386D8 /* SampleIO.bin */; };
 		AAA42B31279C0C87005386D8 /* SampleIOLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA42B30279C0C87005386D8 /* SampleIOLoader.swift */; };
 		AAA42B33279C18C0005386D8 /* IsArrayClose.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA42B32279C18BF005386D8 /* IsArrayClose.swift */; };
+		AAA42B35279D531B005386D8 /* DlShogiResnet10SwishBatch.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = AAA42B34279D531B005386D8 /* DlShogiResnet10SwishBatch.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,10 +48,10 @@
 		AAA42ADD278F13C1005386D8 /* DlshogiOnCoreMLUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DlshogiOnCoreMLUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAA42AE1278F13C1005386D8 /* DlshogiOnCoreMLUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DlshogiOnCoreMLUITests.swift; sourceTree = "<group>"; };
 		AAA42AE3278F13C1005386D8 /* DlshogiOnCoreMLUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DlshogiOnCoreMLUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		AAA42AF0278F1470005386D8 /* DlShogiResnet10Swish.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = DlShogiResnet10Swish.mlmodel; sourceTree = "<group>"; };
 		AAA42B2E279C0C1E005386D8 /* SampleIO.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = SampleIO.bin; sourceTree = "<group>"; };
 		AAA42B30279C0C87005386D8 /* SampleIOLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleIOLoader.swift; sourceTree = "<group>"; };
 		AAA42B32279C18BF005386D8 /* IsArrayClose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsArrayClose.swift; sourceTree = "<group>"; };
+		AAA42B34279D531B005386D8 /* DlShogiResnet10SwishBatch.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = DlShogiResnet10SwishBatch.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +116,7 @@
 		AAA42ACC278F13C0005386D8 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				AAA42AF0278F1470005386D8 /* DlShogiResnet10Swish.mlmodel */,
+				AAA42B34279D531B005386D8 /* DlShogiResnet10SwishBatch.mlmodel */,
 				AAA42ACD278F13C0005386D8 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -272,7 +272,7 @@
 			files = (
 				AAA42B31279C0C87005386D8 /* SampleIOLoader.swift in Sources */,
 				AAA42AC9278F13BE005386D8 /* ContentView.swift in Sources */,
-				AAA42AF1278F1470005386D8 /* DlShogiResnet10Swish.mlmodel in Sources */,
+				AAA42B35279D531B005386D8 /* DlShogiResnet10SwishBatch.mlmodel in Sources */,
 				AAA42B33279C18C0005386D8 /* IsArrayClose.swift in Sources */,
 				AAA42AC7278F13BE005386D8 /* DlshogiOnCoreMLApp.swift in Sources */,
 			);

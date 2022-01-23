@@ -9,8 +9,7 @@ import Foundation
 import CoreML
 
 struct SampleIO {
-    var x1: MLMultiArray
-    var x2: MLMultiArray
+    var x: MLMultiArray
     var move: MLMultiArray
     var result: MLMultiArray
 }
@@ -18,8 +17,7 @@ struct SampleIO {
 func getSampleIO(batchSize: Int) -> SampleIO {
     // SampleIO.binの内容を決め打ち
     let totalBatchSize = 1024
-    let x1RecordShape = [62,9,9]
-    let x2RecordShape = [57,9,9]
+    let xRecordShape = [119,9,9]
     let moveRecordShape = [2187]
     let resultRecordShape = [1]
     
@@ -35,7 +33,7 @@ func getSampleIO(batchSize: Int) -> SampleIO {
     
     var ofs = 0
     var mmArrays: [MLMultiArray] = []
-    for recordShape in [x1RecordShape, x2RecordShape, moveRecordShape, resultRecordShape] {
+    for recordShape in [xRecordShape, moveRecordShape, resultRecordShape] {
         var mmShape: [NSNumber] = [NSNumber(value: batchSize)]
         var recordSize = 1
         for dim in recordShape {
@@ -55,5 +53,5 @@ func getSampleIO(batchSize: Int) -> SampleIO {
         mmArrays.append(mmArray)
         ofs += totalBatchSize * recordSize
     }
-    return SampleIO(x1: mmArrays[0], x2: mmArrays[1], move: mmArrays[2], result: mmArrays[3])
+    return SampleIO(x: mmArrays[0], move: mmArrays[1], result: mmArrays[2])
 }
