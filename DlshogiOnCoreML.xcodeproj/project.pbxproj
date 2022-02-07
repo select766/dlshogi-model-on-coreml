@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA90C4CB27B1E2C700ED174E /* ModelRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA90C4CA27B1E2C700ED174E /* ModelRunner.swift */; };
 		AAA42AC7278F13BE005386D8 /* DlshogiOnCoreMLApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA42AC6278F13BE005386D8 /* DlshogiOnCoreMLApp.swift */; };
 		AAA42AC9278F13BE005386D8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA42AC8278F13BE005386D8 /* ContentView.swift */; };
 		AAA42ACB278F13C0005386D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAA42ACA278F13C0005386D8 /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA90C4CA27B1E2C700ED174E /* ModelRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelRunner.swift; sourceTree = "<group>"; };
 		AAA42AC3278F13BE005386D8 /* DlshogiOnCoreML.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DlshogiOnCoreML.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAA42AC6278F13BE005386D8 /* DlshogiOnCoreMLApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DlshogiOnCoreMLApp.swift; sourceTree = "<group>"; };
 		AAA42AC8278F13BE005386D8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				AAA42ACC278F13C0005386D8 /* Preview Content */,
 				AAA42B30279C0C87005386D8 /* SampleIOLoader.swift */,
 				AAA42B32279C18BF005386D8 /* IsArrayClose.swift */,
+				AA90C4CA27B1E2C700ED174E /* ModelRunner.swift */,
 			);
 			path = DlshogiOnCoreML;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				AAA42B31279C0C87005386D8 /* SampleIOLoader.swift in Sources */,
 				AAA42AC9278F13BE005386D8 /* ContentView.swift in Sources */,
 				AAA42B35279D531B005386D8 /* DlShogiResnet10SwishBatch.mlmodel in Sources */,
+				AA90C4CB27B1E2C700ED174E /* ModelRunner.swift in Sources */,
 				AAA42B33279C18C0005386D8 /* IsArrayClose.swift in Sources */,
 				AAA42AC7278F13BE005386D8 /* DlshogiOnCoreMLApp.swift in Sources */,
 			);

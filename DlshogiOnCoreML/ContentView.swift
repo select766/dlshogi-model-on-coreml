@@ -10,7 +10,6 @@ import CoreML
 
 struct ContentView: View {
     @State var model: DlShogiResnet10SwishBatch?
-    @State var sampleIO: SampleIO?
     @State var msg = "-"
     @State var batchSize = 64
     @State var loadedModelComputeUnits = ""
@@ -32,38 +31,16 @@ struct ContentView: View {
         }
     }
     
-    func loadSampleIOIfNeeded() -> SampleIO {
-        if let s = sampleIO {
-            if s.x.shape[0].intValue != batchSize {
-                let news = getSampleIO(batchSize: batchSize)
-                sampleIO = news
-                return news
-            } else {
-                return s
-            }
-        } else {
-            let news = getSampleIO(batchSize: batchSize)
-            sampleIO = news
-            return news
-        }
-    }
-    
     func runModel() {
         guard let model = model else {
+            msg = "Load model before run"
             return
         }
-        let sampleIO = loadSampleIOIfNeeded()
         
-        let timeStart = Date()
-        guard let pred = try? model.prediction(x: sampleIO.x) else {
-            msg = "Error on prediction"
-            return
-        }
-        let timeEnd = Date()
-        let elapsed = timeEnd.timeIntervalSince(timeStart)
-        let moveDiff = isArrayClose(expected: sampleIO.move, actual: pred.move)
-        let resultDiff = isArrayClose(expected: sampleIO.result, actual: pred.result)
-        msg = "move: \(moveDiff.1)\nresult: \(resultDiff.1)\nelapsed: \(elapsed) sec\ncu=\(loadedModelComputeUnits)\nbs=\(sampleIO.x.shape[0])"
+        let runner = ModelRunner(model: model, batchSize: batchSize, loadedModelComputeUnits: loadedModelComputeUnits, updateMessage: { msg in
+            self.msg = msg
+        })
+        runner.start()
     }
     
     var body: some View {
