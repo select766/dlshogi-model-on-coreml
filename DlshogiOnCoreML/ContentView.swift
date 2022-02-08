@@ -13,6 +13,7 @@ struct ContentView: View {
     @State var msg = "-"
     @State var batchSize = 64
     @State var loadedModelComputeUnits = ""
+    @State var runner: ModelRunner?
     
     func loadModel(computeUnits: MLComputeUnits) {
         let config = MLModelConfiguration()
@@ -31,16 +32,24 @@ struct ContentView: View {
         }
     }
     
-    func runModel() {
+    func runModel(duration: TimeInterval) {
         guard let model = model else {
             msg = "Load model before run"
             return
         }
         
-        let runner = ModelRunner(model: model, batchSize: batchSize, loadedModelComputeUnits: loadedModelComputeUnits, updateMessage: { msg in
+        let runner = ModelRunner(model: model, batchSize: batchSize, loadedModelComputeUnits: loadedModelComputeUnits, duration: duration, updateMessage: { msg in
             self.msg = msg
         })
         runner.start()
+        self.runner = runner // TODO: 終了したら参照を切る
+    }
+    
+    func stopRunModel() {
+        guard let runner = runner else {
+            return
+        }
+        runner.stop = true
     }
     
     var body: some View {
@@ -61,8 +70,17 @@ struct ContentView: View {
                 Text("Batch size")
                 TextField("bs", value: $batchSize, formatter: NumberFormatter()).frame(width: 50, height: 10, alignment: .center)
             }
-            Button(action: runModel) {
-                Text("Run Model")
+            Button(action: {runModel(duration: 0.0)}) {
+                Text("Run Model Once")
+            }.padding()
+            Button(action: {runModel(duration: 60.0)}) {
+                Text("Run Model for 1 min")
+            }.padding()
+            Button(action: {runModel(duration: 3600.0)}) {
+                Text("Run Model for 1 hour")
+            }.padding()
+            Button(action: {stopRunModel()}) {
+                Text("Stop")
             }.padding()
             Text(msg).padding()
         }
