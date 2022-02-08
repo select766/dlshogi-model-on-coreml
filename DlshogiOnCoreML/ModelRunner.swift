@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import os
+
+let logger = Logger(subsystem: "jp.outlook.select766.DlshogiOnCoreML", category: "main")
 
 var sampleIO: SampleIO?
 
@@ -49,8 +52,24 @@ class ModelRunner : Thread {
         }
     }
     
+    func log(_ obj: Any) {
+        do {
+            //　シリアライズできないデータが来ると、 NSInvalidArgumentException が来て
+            // これはNSExceptionのサブクラスでありswiftのcatchで処理できず落ちる
+            let data = try JSONSerialization.data(withJSONObject: obj, options: [])
+            guard let str = String(data: data, encoding: .utf8) else {
+                logger.error("Failed to write log")
+                return
+            }
+            logger.log("\(str, privacy: .public)") // 直接Stringは渡せない
+        } catch {
+            logger.error("Failed to write log")
+        }
+    }
+    
     func runModel() {
         msg("Started on thread")
+        log(["type": "start", "cu": loadedModelComputeUnits, "bs": batchSize])
         let sampleIO = loadSampleIOIfNeeded()
         
         let timeStart = Date()
@@ -72,7 +91,9 @@ class ModelRunner : Thread {
             if timeFromLastReport >= 10.0 {
                 let samplesBetweenReport = sampleCount - sampleCountOfLastReport
                 let samplePerSec = Double(samplesBetweenReport) / timeFromLastReport
-                msg("\(timeNow.timeIntervalSince(timeStart))sec, \(samplePerSec) samples / sec")
+                let elapsed = timeNow.timeIntervalSince(timeStart)
+                msg("\(elapsed)sec, \(samplePerSec) samples / sec")
+                log(["type": "progress", "elapsed": elapsed, "samplePerSec": samplePerSec])
                 lastReportTime = timeNow
                 sampleCountOfLastReport = sampleCount
             }
@@ -87,6 +108,7 @@ class ModelRunner : Thread {
         let moveDiff = isArrayClose(expected: sampleIO.move, actual: pred.move)
         let resultDiff = isArrayClose(expected: sampleIO.result, actual: pred.result)
         msg("move: \(moveDiff.1)\nresult: \(resultDiff.1)\nelapsed: \(elapsed) sec\ncu=\(loadedModelComputeUnits)\nbs=\(sampleIO.x.shape[0])\n\(samplePerSec) samples / sec")
+        log(["type": "end", "elapsed": elapsed, "samplePerSec": samplePerSec, "moveDiff": moveDiff.1, "resultDiff": resultDiff.1])
     }
     override func main() {
         runModel()

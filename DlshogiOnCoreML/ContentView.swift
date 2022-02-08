@@ -76,6 +76,9 @@ struct ContentView: View {
             Button(action: {runModel(duration: 60.0)}) {
                 Text("Run Model for 1 min")
             }.padding()
+            Button(action: {runModel(duration: 600.0)}) {
+                Text("Run Model for 10 mins")
+            }.padding()
             Button(action: {runModel(duration: 3600.0)}) {
                 Text("Run Model for 1 hour")
             }.padding()
