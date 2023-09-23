@@ -80,7 +80,7 @@ class ModelRunner : Thread {
         var lastReportTime = Date()
         var sampleCountOfLastReport = 0
         repeat {
-            pred = try? model.prediction(x: sampleIO.x)
+            pred = try? model.prediction(input: sampleIO.x)
             if pred == nil {
                 msg("Prediction error")
                 return
@@ -105,8 +105,8 @@ class ModelRunner : Thread {
             return
         }
         let samplePerSec = Double(sampleCount) / elapsed
-        let moveDiff = isArrayClose(expected: sampleIO.move, actual: pred.move)
-        let resultDiff = isArrayClose(expected: sampleIO.result, actual: pred.result)
+        let moveDiff = isArrayClose(expected: sampleIO.move, actual: pred.output_policy)
+        let resultDiff = isArrayClose(expected: sampleIO.result, actual: pred.output_value)
         msg("move: \(moveDiff.1)\nresult: \(resultDiff.1)\nelapsed: \(elapsed) sec\ncu=\(loadedModelComputeUnits)\nbs=\(sampleIO.x.shape[0])\n\(samplePerSec) samples / sec")
         log(["type": "end", "elapsed": elapsed, "samplePerSec": samplePerSec, "moveDiff": moveDiff.1, "resultDiff": resultDiff.1])
     }
