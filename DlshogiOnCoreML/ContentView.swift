@@ -27,6 +27,8 @@ struct ContentView: View {
             loadedModelComputeUnits = "GPU"
         case .all:
             loadedModelComputeUnits = "NE"
+        case .cpuAndNeuralEngine:
+            loadedModelComputeUnits = "CPUandNE"
         @unknown default:
             fatalError()
         }
@@ -64,6 +66,9 @@ struct ContentView: View {
                 }.padding()
                 Button(action: {loadModel(computeUnits: .cpuOnly)}) {
                     Text("CPU")
+                }.padding()
+                Button(action: {loadModel(computeUnits: .cpuAndNeuralEngine)}) {
+                    Text("CPUandNE")
                 }.padding()
             }
             HStack {
