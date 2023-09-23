@@ -72,9 +72,15 @@ class ModelRunner : Thread {
         log(["type": "start", "cu": loadedModelComputeUnits, "bs": batchSize])
         let sampleIO = loadSampleIOIfNeeded()
         
+        var pred: DlShogiResnet10SwishBatchOutput?
+        // 初回はビルド等で遅いかもしれないので測定から除外
+        pred = try? model.prediction(input: sampleIO.x)
+        if pred == nil {
+            msg("Prediction error")
+            return
+        }
         let timeStart = Date()
         let timeWhenEnd = timeStart + duration
-        var pred: DlShogiResnet10SwishBatchOutput?
         var timeNow = Date()
         var sampleCount = 0
         var lastReportTime = Date()
